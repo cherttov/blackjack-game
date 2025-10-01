@@ -9,9 +9,8 @@ void Mouse::Update(sf::RenderWindow& window) {
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
         isPressed = true;
     } else {
-        if (isPressed) {
+        if (isPressed)
             clicked = true;
-        }
         isPressed = false;
     }
 }

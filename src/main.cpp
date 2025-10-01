@@ -15,6 +15,7 @@ int main() {
 
     // Instantiate mouse
     Mouse mouse;
+    int posDelay = 0;
 
     // Load font
     sf::Font font;
@@ -39,7 +40,11 @@ int main() {
         mouse.Update(window);
         if (mouse.clicked)
             std::cout << "Clicked\n";
-        //std::cout << mouse.position.x << ":" << mouse.position.y << std::endl;
+        posDelay++;
+        if (posDelay == 15) {
+            std::cout << mouse.position.x << ":" << mouse.position.y << std::endl;
+            posDelay = 0;
+        }
 
         // Button event
         if (button.HandleMouse(mouse)) {
