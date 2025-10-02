@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
-#include "mouse.hpp"
+#include "../other/mouse.hpp"
 
 // Bounds struct
 struct Bounds {
@@ -19,6 +19,8 @@ class Button {
         sf::Vector2f size = {200.f, 100.f};
         sf::Vector2f position = {0.f, 0.f};
         std::string displayedText = "Button";
+        sf::Color rectColor = sf::Color::White;
+        sf::Color textColor = sf::Color::Black;
         float textScale = 0.5f;
 
         // Mouse interaction functions

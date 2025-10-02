@@ -26,13 +26,13 @@ void Button::Draw(sf::RenderWindow& window) {
     // Rectangle
     rect.setSize(size);
     rect.setPosition(position);
-    rect.setFillColor(sf::Color::White);
+    rect.setFillColor(rectColor);
     window.draw(rect);
 
     // Text
     text.setString(displayedText);
     text.setCharacterSize(size.y * textScale);
-    text.setFillColor(sf::Color::Black);
+    text.setFillColor(textColor);
     AlignText(); // <-- I tried not calling it every frame, but it doesn't want to work
     text.setPosition(textPosition);
     window.draw(text);

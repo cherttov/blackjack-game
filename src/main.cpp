@@ -3,14 +3,15 @@
 #include <iostream>
 
 // Other code
-#include "mouse.hpp"
-#include "deck.hpp"
-#include "button.hpp"
+#include "other/mouse.hpp"
+#include "game/deck.hpp"
+#include "gui/button.hpp"
 
 
 int main() {
     // Define window
-    sf::RenderWindow window(sf::VideoMode({800, 600}), "Blackjack Game", sf::Style::Close);
+    sf::Vector2u windowSize(500, 500);
+    sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Blackjack Game", sf::Style::Close);
     window.setFramerateLimit(30);
 
     // Instantiate mouse
@@ -22,9 +23,22 @@ int main() {
     if (!font.loadFromFile("assets/fonts/arial.ttf")) {
         std::cerr << "Failed to load font\n";
     }
+    
+    // Instantiate buttons
+    sf::Vector2f buttonsSize(windowSize.x / 2.f, windowSize.y / 4.f);
 
-    // Instantiate button
-    Button button(font);
+    Button hitButton(font);
+    hitButton.position = { 0.f, windowSize.y - buttonsSize.y };
+    hitButton.size = buttonsSize;
+    hitButton.displayedText = "HIT";
+    hitButton.rectColor = sf::Color::Green;
+    
+    Button standButton(font);
+    standButton.position = { buttonsSize.x, windowSize.y - buttonsSize.y };
+    standButton.size = buttonsSize;
+    standButton.displayedText = "STAND";
+    standButton.rectColor = sf::Color::Red;
+
 
     // Main loop
     while (window.isOpen()) {
@@ -47,18 +61,22 @@ int main() {
         }
 
         // Button event
-        if (button.HandleMouse(mouse)) {
-            std::cout << "Button Clicked!" << std::endl;
+        if (hitButton.HandleMouse(mouse)) {
+            std::cout << "HIT" << std::endl;
+        }
+        if (standButton.HandleMouse(mouse)) {
+            std::cout << "STAND" << std::endl;
         }
 
         // Window clearing
-        window.clear(sf::Color::Black); // <-- From here
+        window.clear(sf::Color::Black); // <-- Rendering from here
 
-        // Button
-        button.Draw(window);
+        // Buttons rendering
+        hitButton.Draw(window);
+        standButton.Draw(window);
 
         // Window updating
-        window.display(); // <-- To here
+        window.display(); // <-- Rendering to here
     }
     return 0;
 }
