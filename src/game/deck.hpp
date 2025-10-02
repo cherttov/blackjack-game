@@ -1,16 +1,20 @@
 #pragma once
-#include <vector>
+#include "card.hpp"
 
+#define DECK_SIZE 52
 
 class Deck {
     public:
+        // Constructor | Destructor
         Deck();
-        int* Shuffle();
-    private:
-        int cards[];
-};
+        ~Deck();
 
-// spade : 0 - 12
-// heart : 13 - 25
-// diamond : 26 - 38
-// club : 39 - 51
+        // Game functions
+        int* Shuffle();
+        Card DrawCard();
+
+    private:
+        // Private variables
+        int* cards;
+        int currentIndex;
+};

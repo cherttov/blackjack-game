@@ -5,6 +5,7 @@
 // Other code
 #include "other/mouse.hpp"
 #include "game/deck.hpp"
+#include "game/card.hpp"
 #include "gui/button.hpp"
 
 
@@ -49,7 +50,7 @@ int main() {
                 window.close();
             }
         }
-        
+
         // Mouse event
         mouse.Update(window);
         if (mouse.clicked)

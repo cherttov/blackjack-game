@@ -2,19 +2,26 @@
 #include <random>
 #include <iostream>
 
-
+// Constructor
 Deck::Deck() {
-
+    cards = Shuffle();
 }
 
+// Destructor
+Deck::~Deck() {
+    if (cards) {
+        delete[] cards;
+        cards = nullptr;
+    }
+}
 
+// Shuffles the deck (int)
 int* Deck::Shuffle() {
     // Declaration
-    int arrSize = 52;
-    int* arr = new int[arrSize];
+    int* arr = new int[DECK_SIZE];
     
-    for (int i = 0; i < arrSize; i++) {
-        int temp = rand() % arrSize;
+    for (int i = 0; i < DECK_SIZE; i++) {
+        int temp = rand() % DECK_SIZE;
         bool exists = false;
         // Check if already in deck
         for (int j = 0; j < i; j++) {
@@ -30,10 +37,18 @@ int* Deck::Shuffle() {
             arr[i] = temp;
         }
     }
-    // Debug
-    // for (int i = 0; i < arrSize; i++) {
-    //     std::cout << arr[i] << std::endl;
-    // }
 
-    return arr; // delete[] arr;
+    currentIndex = 0;
+    return arr;
+}
+
+// Checks and draws cards
+Card Deck::DrawCard() {
+    if (currentIndex >= DECK_SIZE) {
+        delete[] cards;
+        cards = Shuffle();
+    }
+
+    int cardId = cards[currentIndex++];
+    return IntToCard(cardId);
 }
