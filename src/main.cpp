@@ -7,6 +7,7 @@
 #include "game/deck.hpp"
 #include "game/card.hpp"
 #include "gui/button.hpp"
+#include "game/game-processing.hpp"
 
 
 int main() {
@@ -40,6 +41,10 @@ int main() {
     standButton.displayedText = "STAND";
     standButton.rectColor = sf::Color::Red;
 
+    // Instantiate game processor
+    GameProcessing gameProcessor;
+    gameProcessor.StartNewGame();
+
 
     // Main loop
     while (window.isOpen()) {
@@ -54,19 +59,21 @@ int main() {
         // Mouse event
         mouse.Update(window);
         if (mouse.clicked)
-            std::cout << "Clicked\n";
+            //std::cout << "Clicked\n";
         posDelay++;
         if (posDelay == 15) {
-            std::cout << mouse.position.x << ":" << mouse.position.y << std::endl;
+            //std::cout << mouse.position.x << ":" << mouse.position.y << std::endl;
             posDelay = 0;
         }
 
-        // Button event
+        // Button events
         if (hitButton.HandleMouse(mouse)) {
-            std::cout << "HIT" << std::endl;
+            //std::cout << "HIT" << std::endl;
+            gameProcessor.PlayerHitEvent();
         }
         if (standButton.HandleMouse(mouse)) {
-            std::cout << "STAND" << std::endl;
+            //std::cout << "STAND" << std::endl;
+            gameProcessor.PlayerStandEvent();
         }
 
         // Window clearing

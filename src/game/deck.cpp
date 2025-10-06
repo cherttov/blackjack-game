@@ -4,7 +4,7 @@
 
 // Constructor
 Deck::Deck() {
-    cards = Shuffle();
+    Shuffle();
 }
 
 // Destructor
@@ -16,16 +16,17 @@ Deck::~Deck() {
 }
 
 // Shuffles the deck (int)
-int* Deck::Shuffle() {
+void Deck::Shuffle() {
     // Declaration
-    int* arr = new int[DECK_SIZE];
+    if (!cards)
+        cards = new int[DECK_SIZE];
     
     for (int i = 0; i < DECK_SIZE; i++) {
         int temp = rand() % DECK_SIZE;
         bool exists = false;
         // Check if already in deck
         for (int j = 0; j < i; j++) {
-            if (arr[j] == temp) {
+            if (cards[j] == temp) {
                 exists = true;
                 break;
             }
@@ -34,19 +35,18 @@ int* Deck::Shuffle() {
         if (exists == true) {
             i--; 
         } else {
-            arr[i] = temp;
+            cards[i] = temp;
         }
     }
 
     currentIndex = 0;
-    return arr;
 }
 
 // Checks and draws cards
 Card Deck::DrawCard() {
     if (currentIndex >= DECK_SIZE) {
         delete[] cards;
-        cards = Shuffle();
+        Shuffle();
     }
 
     int cardId = cards[currentIndex++];

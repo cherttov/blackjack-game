@@ -10,7 +10,7 @@ class Deck {
         ~Deck();
 
         // Game functions
-        int* Shuffle();
+        void Shuffle();
         Card DrawCard();
 
     private:

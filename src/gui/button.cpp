@@ -1,6 +1,7 @@
 #include "button.hpp"
 #include <SFML/Graphics.hpp>
 
+
 // Constructor
 Button::Button(sf::Font& font) {
     text.setFont(font);

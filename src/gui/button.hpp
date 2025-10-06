@@ -3,11 +3,13 @@
 #include <string>
 #include "../other/mouse.hpp"
 
+
 // Bounds struct
 struct Bounds {
     sf::Vector2f min;
     sf::Vector2f max;
 };
+
 
 // Button class
 class Button {
