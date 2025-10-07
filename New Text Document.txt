@@ -1,3 +1,0 @@
-Cards: 100x125
-Shuffle Button: 120x120
-Text: 30px

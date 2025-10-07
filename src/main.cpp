@@ -5,6 +5,7 @@
 // Other code
 #include "other/mouse.hpp"
 #include "gui/button.hpp"
+#include "gui/gui.hpp"
 #include "game/game-processing.hpp"
 
 
@@ -24,6 +25,9 @@ int main() {
         std::cerr << "Failed to load font\n";
     }
     
+    // Instantiate GUI
+    Gui gui(font);
+
     // Instantiate buttons
     sf::Vector2f buttonsSize(windowSize.x / 2.f, windowSize.y / 4.f);
 
@@ -76,6 +80,9 @@ int main() {
 
         // Window clearing
         window.clear(sf::Color::Black); // <-- Rendering from here
+
+        // GUI rendering
+        gui.Draw(window);
 
         // Buttons rendering
         hitButton.Draw(window);
