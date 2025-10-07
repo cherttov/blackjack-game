@@ -44,7 +44,6 @@ void GameProcessing::PlayerStandEvent() {
     state = GameState::DEALER_TURN;
     while (dealer.ProcessTurn(player.GetTotal())) {
         dealer.AddCard(deck.DrawCard());
-        std::cout << dealer.GetTotal() << std::endl;
     }
     std::cout << "dealer: " << dealer.GetTotal() << std::endl;
     CheckCards();
