@@ -4,8 +4,6 @@
 
 // Other code
 #include "other/mouse.hpp"
-#include "game/deck.hpp"
-#include "game/card.hpp"
 #include "gui/button.hpp"
 #include "game/game-processing.hpp"
 
