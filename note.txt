@@ -1,5 +1,0 @@
-1.
-g++ src/*.cpp -IC:\SFML\include -LC:\SFML\lib -lsfml-graphics -lsfml-window -lsfml-system -o bin/blackjack.exe
-
-2.
-g++ src/*.cpp -o bin/blackjack.exe -lsfml-graphics -lsfml-window -lsfml-system
