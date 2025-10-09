@@ -3,6 +3,7 @@
 #include "player.hpp"
 #include "deck.hpp"
 #include "dealer.hpp"
+#include "../gui/gui.hpp"
 
 
 // Game state enum
@@ -18,7 +19,7 @@ enum class GameState {
 class GameProcessing {
     public:
         // Constructor
-        GameProcessing();
+        GameProcessing(Gui& guiRef);
 
         // Game processing events
         void StartNewGame();
@@ -29,10 +30,18 @@ class GameProcessing {
         void PlayerStandEvent(); // Stand button
     
     private:
+        // Private variables
         GameState state;
         Player player;
         Dealer dealer;
         Deck deck;
+
+        Gui& gui;
         
         void DealInitialHand();
+
+        // Gui helper functions
+        void SendPlayerCards(Card& card);
+        void SendDealerCards(Card& card);
+        void SendRoundResult(bool didPlayerWin);
 };

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 
+
 // Suits enum
 enum class Suit {
     SPADES,
@@ -18,6 +19,9 @@ struct Card {
 
 // Int to card converter
 Card IntToCard(int id);
+
+// Link card to texture path
+std::string GetTexturePath(Card& card);
 
 
 // spade : 0 - 12

@@ -44,7 +44,7 @@ int main() {
     standButton.rectColor = sf::Color::Red;
 
     // Instantiate game processor
-    GameProcessing gameProcessor;
+    GameProcessing gameProcessor(gui);
     gameProcessor.StartNewGame();
 
 
