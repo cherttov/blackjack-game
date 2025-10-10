@@ -9,14 +9,11 @@
 class Gui {
     public:
         // Constructor
-        Gui(sf::Font& loadedFont);
-
-        // Load assets function
-        void LoadAssets();
+        Gui(sf::Font& fontRef);
 
         // Game processing accepting functions
-        void ProcessPlayerCard(std::string card);
-        void ProcessDealerCard(std::string card);
+        void ProcessPlayerCard(std::string card, int total);
+        void ProcessDealerCard(std::string card, int total);
         void ProcessRoundResult(bool didPlayerWin);
 
         // Render function
@@ -25,6 +22,13 @@ class Gui {
     private:
         // Instantiate font reference
         sf::Font& font;
+
+        // Instantiate counter text
+        sf::Text playerText;
+        // sf::Text dealerText;
+
+        int playerTotal = 0;
+        int dealerTotal = 0;
 
         // Instantiate texture map
         std::map<std::string, sf::Texture> cardTextures;

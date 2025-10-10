@@ -15,7 +15,7 @@ struct Bounds {
 class Button {
     public:
         // Constructor
-        Button(sf::Font& font);
+        Button(sf::Font& fontRef);
 
         // Parameters + defaults
         sf::Vector2f size = {200.f, 100.f};
@@ -32,6 +32,9 @@ class Button {
         void Draw(sf::RenderWindow& window);
 
     private:
+        // Font reference
+        sf::Font& font;
+
         // Bounds struct
         Bounds GetBounds() const;
 

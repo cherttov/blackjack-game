@@ -3,7 +3,7 @@
 
 
 // Constructor
-Button::Button(sf::Font& font) {
+Button::Button(sf::Font& fontRef) : font(fontRef) {
     text.setFont(font);
 }
 
@@ -31,11 +31,13 @@ void Button::Draw(sf::RenderWindow& window) {
     window.draw(rect);
 
     // Text
+    text.setFont(font);
     text.setString(displayedText);
     text.setCharacterSize(size.y * textScale);
     text.setFillColor(textColor);
     AlignText(); // <-- I tried not calling it every frame, but it doesn't want to work
     text.setPosition(textPosition);
+    
     window.draw(text);
 }
 

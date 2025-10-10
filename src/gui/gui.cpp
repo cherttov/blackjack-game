@@ -1,23 +1,38 @@
 #include "gui.hpp"
+// #include <SFML/Graphics.hpp>
 #include <iostream>
 
 
 // Constructor
-Gui::Gui(sf::Font& loadedFont) : font(loadedFont) {
-    
-}
-
-
-void Gui::LoadAssets() {
-
+Gui::Gui(sf::Font& fontRef) : font(fontRef) {
+    Gui::ResetCards();
+    // dealerText just not working for some fkign reason
+    playerText.setFont(font); 
+    // dealerText.setFont(font);
+    playerTotal = 0;
+    dealerTotal = 0;
 }
 
 // Renders cards
 void Gui::Draw(sf::RenderWindow& window) {
+    // Cards
     for (auto& card : dealerCards)
         window.draw(card);
     for (auto& card : playerCards)
         window.draw(card);
+    
+    // Count
+    playerText.setCharacterSize(30);
+    playerText.setString(std::to_string(playerTotal));
+    playerText.setFillColor(sf::Color::White);
+    playerText.setPosition(230.f, 210.f);
+    window.draw(playerText);
+
+    // dealerText.setCharacterSize(30);
+    // dealerText.setString(std::to_string(dealerTotal));
+    // dealerText.setFillColor(sf::Color::White);
+    // dealerText.setPosition(230.f, 70.f);
+    // window.draw(dealerText);
 }
 
 // Gets card textures
@@ -36,23 +51,27 @@ sf::Texture& Gui::GetCardTexture(std::string& path) {
 void Gui::ResetCards() {
     playerCards.clear();
     dealerCards.clear();
+    playerTotal = 0;
+    dealerTotal = 0;
 }
 
 
 // Rendering player cards
-void Gui::ProcessPlayerCard(std::string cardPath) {
+void Gui::ProcessPlayerCard(std::string cardPath, int total) {
     sf::Sprite sprite(GetCardTexture(cardPath));
     sprite.setPosition(50.f + playerCards.size() * 100.f * 0.9f, 250.f);
     sprite.setScale(0.9f, 0.9f);
     playerCards.push_back(sprite);
+    playerTotal = total;
 }
 
 // Rendering dealer cards
-void Gui::ProcessDealerCard(std::string cardPath) {
+void Gui::ProcessDealerCard(std::string cardPath, int total) {
     sf::Sprite sprite(GetCardTexture(cardPath));
     sprite.setPosition(50.f + dealerCards.size() * 100.f * 0.9f, 25.f);
     sprite.setScale(0.9f, 0.9f);
     dealerCards.push_back(sprite);
+    dealerTotal = total;
 }
 
 // Processing round end

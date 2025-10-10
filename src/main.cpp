@@ -9,6 +9,7 @@
 #include "game/game-processing.hpp"
 
 
+
 int main() {
     // Define window
     sf::Vector2u windowSize(500, 500);
@@ -23,6 +24,7 @@ int main() {
     sf::Font font;
     if (!font.loadFromFile("assets/fonts/arial.ttf")) {
         std::cerr << "Failed to load font\n";
+        return 1;
     }
     
     // Instantiate GUI
@@ -60,26 +62,21 @@ int main() {
 
         // Mouse event
         mouse.Update(window);
-        if (mouse.clicked)
-            //std::cout << "Clicked\n";
         posDelay++;
         if (posDelay == 15) {
-            //std::cout << mouse.position.x << ":" << mouse.position.y << std::endl;
             posDelay = 0;
         }
 
         // Button events
         if (hitButton.HandleMouse(mouse)) {
-            //std::cout << "HIT" << std::endl;
             gameProcessor.PlayerHitEvent();
         }
         if (standButton.HandleMouse(mouse)) {
-            //std::cout << "STAND" << std::endl;
             gameProcessor.PlayerStandEvent();
         }
 
         // Window clearing
-        window.clear(sf::Color::Black); // <-- Rendering from here
+        window.clear(sf::Color(0, 93, 34)); // <-- Rendering from here
 
         // GUI rendering
         gui.Draw(window);

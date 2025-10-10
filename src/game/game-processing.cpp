@@ -99,12 +99,14 @@ void GameProcessing::CheckCards() {
 // Gui helper functions
 void GameProcessing::SendPlayerCards(Card& card) {
     std::string temp = GetTexturePath(card);
-    gui.ProcessPlayerCard(temp);
+    int total = player.GetTotal();
+    gui.ProcessPlayerCard(temp, total);
 }
 
 void GameProcessing::SendDealerCards(Card& card) {
     std::string temp = GetTexturePath(card);
-    gui.ProcessDealerCard(temp);
+    int total = dealer.GetTotal();
+    gui.ProcessDealerCard(temp, total);
 }
 
 void GameProcessing::SendRoundResult(bool didPlayerWin) {
