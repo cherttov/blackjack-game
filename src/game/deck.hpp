@@ -1,5 +1,6 @@
 #pragma once
 #include "card.hpp"
+#include <random>
 
 #define DECK_SIZE 52
 

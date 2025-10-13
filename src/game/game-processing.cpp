@@ -21,23 +21,20 @@ void GameProcessing::DealInitialHand() {
     Card temp;
 
     temp = deck.DrawCard();
-    SendPlayerCards(temp);
     player.AddCard(temp);
+    SendPlayerCards(temp);
 
     temp = deck.DrawCard();
-    SendPlayerCards(temp);
     dealer.AddCard(temp);
+    SendDealerCards(temp);
 
     temp = deck.DrawCard();
-    SendDealerCards(temp);
     player.AddCard(temp);
+    SendPlayerCards(temp);
 
     temp = deck.DrawCard();
-    SendDealerCards(temp);
     dealer.AddCard(temp); // <- make it a hidden card
-
-    std::cout << "player: " << player.GetTotal() << std::endl;
-    std::cout << "dealer: " << dealer.GetTotal() << std::endl;
+    SendDealerCards(temp);
 }
 
 // Player hit event
@@ -46,10 +43,9 @@ void GameProcessing::PlayerHitEvent() {
         return;
 
     Card temp = deck.DrawCard();
-    SendPlayerCards(temp);
     player.AddCard(deck.DrawCard());
+    SendPlayerCards(temp);
 
-    std::cout << "player: " << player.GetTotal() << std::endl;
     if (player.GetTotal() > 21)
         CheckCards();
 }
@@ -61,10 +57,9 @@ void GameProcessing::PlayerStandEvent() {
     state = GameState::DEALER_TURN;
     while (dealer.ProcessTurn(player.GetTotal())) {
         Card temp = deck.DrawCard();
-        SendDealerCards(temp);
         dealer.AddCard(temp);
+        SendDealerCards(temp);
     }
-    std::cout << "dealer: " << dealer.GetTotal() << std::endl;
     CheckCards();
 }
 

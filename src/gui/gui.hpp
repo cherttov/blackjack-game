@@ -3,6 +3,8 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <iostream>
+#include "text-object.hpp"
 
 
 // Gui class
@@ -24,8 +26,8 @@ class Gui {
         sf::Font& font;
 
         // Instantiate counter text
-        sf::Text playerText;
-        // sf::Text dealerText;
+        TextObject playerText;
+        // TextObject dealerText;
 
         int playerTotal = 0;
         int dealerTotal = 0;

@@ -1,10 +1,8 @@
 #include "deck.hpp"
-#include <random>
-#include <iostream>
+
 
 // Constructor
 Deck::Deck() {
-    Shuffle();
 }
 
 // Destructor

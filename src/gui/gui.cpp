@@ -1,16 +1,13 @@
 #include "gui.hpp"
-// #include <SFML/Graphics.hpp>
-#include <iostream>
 
 
 // Constructor
-Gui::Gui(sf::Font& fontRef) : font(fontRef) {
+Gui::Gui(sf::Font& fontRef) 
+    : font(fontRef),
+    playerText(fontRef, "0", 30, sf::Color::White, {230.f, 210.f})
+    // dealerText(fontRef, "0", 30, sf::Color::White, {230.f, 70.f}) 
+{
     Gui::ResetCards();
-    // dealerText just not working for some fkign reason
-    playerText.setFont(font); 
-    // dealerText.setFont(font);
-    playerTotal = 0;
-    dealerTotal = 0;
 }
 
 // Renders cards
@@ -21,18 +18,12 @@ void Gui::Draw(sf::RenderWindow& window) {
     for (auto& card : playerCards)
         window.draw(card);
     
-    // Count
-    playerText.setCharacterSize(30);
-    playerText.setString(std::to_string(playerTotal));
-    playerText.setFillColor(sf::Color::White);
-    playerText.setPosition(230.f, 210.f);
-    window.draw(playerText);
+    // Count text
+    playerText.setString(std::to_string(playerTotal) + " : " + std::to_string(dealerTotal));
+    playerText.Draw(window);
 
-    // dealerText.setCharacterSize(30);
     // dealerText.setString(std::to_string(dealerTotal));
-    // dealerText.setFillColor(sf::Color::White);
-    // dealerText.setPosition(230.f, 70.f);
-    // window.draw(dealerText);
+    // dealerText.Draw(window);
 }
 
 // Gets card textures
