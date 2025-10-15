@@ -1,5 +1,4 @@
 #include "game-processing.hpp"
-#include <iostream>
 
 
 // Constructor

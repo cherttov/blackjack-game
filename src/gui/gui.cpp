@@ -4,8 +4,8 @@
 // Constructor
 Gui::Gui(sf::Font& fontRef) 
     : font(fontRef),
-    playerText(fontRef, "0", 30, sf::Color::White, {230.f, 210.f})
-    //dealerText(fontRef, "0", 30, sf::Color::White, {230.f, 70.f})
+    playerText(fontRef, "0", 30, sf::Color::White, {230.f, 210.f}),
+    dealerText(fontRef, "0", 30, sf::Color::White, {230.f, 140.f})
 {
     Gui::ResetCards();
 }
@@ -19,11 +19,11 @@ void Gui::Draw(sf::RenderWindow& window) {
         window.draw(card);
     
     // Count text
-    playerText.setString(std::to_string(playerTotal) + " : " + std::to_string(dealerTotal));
+    playerText.setString(std::to_string(playerTotal));
     playerText.Draw(window);
 
-    // dealerText.setString(std::to_string(dealerTotal));
-    // dealerText.Draw(window);
+    dealerText.setString(std::to_string(dealerTotal));
+    dealerText.Draw(window);
 }
 
 // Gets card textures

@@ -83,11 +83,11 @@ int main() {
         gameProcessor.ProcessDealerTurn();
 
         // GUI rendering
-        // gui.Draw(window);
+        gui.Draw(window);
 
         // Buttons rendering
-        // hitButton.Draw(window);
-        // standButton.Draw(window);
+        hitButton.Draw(window);
+        standButton.Draw(window);
 
         // Window updating
         window.display(); // <-- Rendering to here

@@ -3,6 +3,7 @@
 
 // Constructor
 Deck::Deck() {
+    cards = nullptr;
 }
 
 // Destructor
@@ -16,8 +17,10 @@ Deck::~Deck() {
 // Shuffles the deck (int)
 void Deck::Shuffle() {
     // Declaration
+
     if (!cards)
         cards = new int[DECK_SIZE];
+        
     for (int i = 0; i < DECK_SIZE; i++) {
         int temp = rand() % DECK_SIZE;
         bool exists = false;

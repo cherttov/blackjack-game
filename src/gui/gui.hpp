@@ -27,7 +27,7 @@ class Gui {
 
         // Instantiate counter text
         TextObject playerText;
-        //TextObject dealerText;
+        TextObject dealerText;
 
         int playerTotal = 0;
         int dealerTotal = 0;

@@ -4,6 +4,8 @@
 #include "deck.hpp"
 #include "dealer.hpp"
 #include "../gui/gui.hpp"
+#include <iostream>
+
 
 
 // Game state enum
