@@ -32,22 +32,25 @@ int main() {
 
     // Instantiate buttons
     sf::Vector2f buttonsSize(windowSize.x / 2.f, windowSize.y / 4.f);
+    sf::Vector2f hitPos = { 0.f, windowSize.y - buttonsSize.y };
+    sf::Vector2f standPos = { buttonsSize.x, windowSize.y - buttonsSize.y };
 
-    Button hitButton(font);
-    hitButton.position = { 0.f, windowSize.y - buttonsSize.y };
-    hitButton.size = buttonsSize;
-    hitButton.displayedText = "HIT";
-    hitButton.rectColor = sf::Color::Green;
-    
-    Button standButton(font);
-    standButton.position = { buttonsSize.x, windowSize.y - buttonsSize.y };
-    standButton.size = buttonsSize;
-    standButton.displayedText = "STAND";
-    standButton.rectColor = sf::Color::Red;
+    Button hitButton(font,
+                     buttonsSize,
+                     hitPos,
+                     "HIT",
+                     sf::Color::Green,
+                     sf::Color::Black);
+
+    Button standButton(font,
+                       buttonsSize,
+                       standPos,
+                       "STAND",
+                       sf::Color::Red,
+                       sf::Color::Black);
 
     // Instantiate game processor
     GameProcessing gameProcessor(gui);
-    gameProcessor.StartNewGame();
 
 
     // Main loop
@@ -59,7 +62,6 @@ int main() {
                 window.close();
             }
         }
-
         // Mouse event
         mouse.Update(window);
         posDelay++;
@@ -81,11 +83,11 @@ int main() {
         gameProcessor.ProcessDealerTurn();
 
         // GUI rendering
-        gui.Draw(window);
+        // gui.Draw(window);
 
         // Buttons rendering
-        hitButton.Draw(window);
-        standButton.Draw(window);
+        // hitButton.Draw(window);
+        // standButton.Draw(window);
 
         // Window updating
         window.display(); // <-- Rendering to here

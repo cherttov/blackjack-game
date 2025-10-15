@@ -9,11 +9,11 @@ TextObject::TextObject(sf::Font& fontRef,
                        sf::Vector2f position) 
     : font(fontRef) 
 {
-        text.setFont(font);
-        text.setCharacterSize(size);
-        text.setString(displayedText);
-        text.setFillColor(textColor);
-        text.setPosition(position);  
+    text.setFont(font);
+    text.setCharacterSize(size);
+    text.setString(displayedText);
+    text.setFillColor(textColor);
+    text.setPosition(position);  
 }
 
 // Renders text

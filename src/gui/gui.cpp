@@ -5,7 +5,7 @@
 Gui::Gui(sf::Font& fontRef) 
     : font(fontRef),
     playerText(fontRef, "0", 30, sf::Color::White, {230.f, 210.f})
-    // dealerText(fontRef, "0", 30, sf::Color::White, {230.f, 70.f}) 
+    //dealerText(fontRef, "0", 30, sf::Color::White, {230.f, 70.f})
 {
     Gui::ResetCards();
 }

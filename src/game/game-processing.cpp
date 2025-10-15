@@ -5,6 +5,7 @@
 // Constructor
 GameProcessing::GameProcessing(Gui& guiRef) : gui(guiRef){
     state = GameState::WAITING_FOR_INPUT;
+    StartNewGame();
 }
 
 // New game
@@ -73,38 +74,29 @@ void GameProcessing::ProcessDealerTurn() {
 // Checks for the winner
 void GameProcessing::CheckCards() {
     state = GameState::INTERMISSION;
+
     int playerTotal = player.GetTotal();
     int dealerTotal = dealer.GetTotal();
-    bool temp;
+    bool didPlayerWin;
 
     if (playerTotal > 21) {
         std::cout << "You lost" << std::endl;
-        temp = false;
+        didPlayerWin = false;
     } else if (dealerTotal > 21) {
         std::cout << "You won" << std::endl;
-        temp = true;
+        didPlayerWin = true;
     } else {
         if (playerTotal > dealerTotal) {
             std::cout << "You won" << std::endl;
-            temp = true;
+            didPlayerWin = true;
         } else {
             std::cout << "You lost" << std::endl;
-            temp = false;
+            didPlayerWin = false;
         }
     }
 
-    // To waste time a bit, for now
-    int delay = 0;
-    for (int i = 0; i < 1000000000; i++) {
-        delay = (i * 2 - 30 + 200) / 2 + 68 / 3;
-        if (delay > 2)
-            delay /= 3;
-        else
-            delay += 3;
-    }
-
-    SendRoundResult(temp);
-    GameProcessing::StartNewGame();
+    SendRoundResult(didPlayerWin);
+    StartNewGame();
 }
 
 

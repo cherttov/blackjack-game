@@ -37,8 +37,10 @@ class GameProcessing {
         Dealer dealer;
         Deck deck;
 
+        // Gui ref
         Gui& gui;
         
+        // Private function
         void DealInitialHand();
 
         // Gui helper functions

@@ -18,7 +18,6 @@ void Deck::Shuffle() {
     // Declaration
     if (!cards)
         cards = new int[DECK_SIZE];
-    
     for (int i = 0; i < DECK_SIZE; i++) {
         int temp = rand() % DECK_SIZE;
         bool exists = false;
@@ -31,7 +30,7 @@ void Deck::Shuffle() {
         }
         // Retry || Set value
         if (exists == true) {
-            i--; 
+            i--;
         } else {
             cards[i] = temp;
         }

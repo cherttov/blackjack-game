@@ -2,8 +2,30 @@
 
 
 // Constructor
-Button::Button(sf::Font& fontRef) : font(fontRef) {
+Button::Button(sf::Font& fontRef,
+               sf::Vector2f aSize,
+               sf::Vector2f aPosition,
+               std::string aDisplayedText,
+               sf::Color aRectColor,
+               sf::Color aTextColor) 
+    : font(fontRef),
+    size(aSize),
+    position(aPosition),
+    textPosition({0.f, 0.f})
+{
+    // Rect init
+    rect.setSize(aSize);
+    rect.setPosition(aPosition);
+    rect.setFillColor(aRectColor);
+
+    // Text init
     text.setFont(font);
+    text.setString(aDisplayedText);
+    text.setCharacterSize(TEXTSIZE);
+    text.setFillColor(aTextColor);
+
+    AlignText();
+    text.setPosition(textPosition);
 }
 
 // Handling the mouse events
@@ -24,19 +46,8 @@ bool Button::HandleMouse(const Mouse& mouse) {
 // Button rendering
 void Button::Draw(sf::RenderWindow& window) {
     // Rectangle
-    rect.setSize(size);
-    rect.setPosition(position);
-    rect.setFillColor(rectColor);
     window.draw(rect);
-
     // Text
-    text.setFont(font);
-    text.setString(displayedText);
-    text.setCharacterSize(size.y * textScale);
-    text.setFillColor(textColor);
-    AlignText(); // <-- I tried not calling it every frame, but it doesn't want to work
-    text.setPosition(textPosition);
-    
     window.draw(text);
 }
 
