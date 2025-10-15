@@ -2,7 +2,7 @@
 #include <vector>
 #include "card.hpp"
 
-//
+// Dealer class
 class Dealer {
     public:
         void AddCard(const Card& card);

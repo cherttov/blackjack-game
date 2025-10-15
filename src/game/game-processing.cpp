@@ -43,7 +43,7 @@ void GameProcessing::PlayerHitEvent() {
         return;
 
     Card temp = deck.DrawCard();
-    player.AddCard(deck.DrawCard());
+    player.AddCard(temp);
     SendPlayerCards(temp);
 
     if (player.GetTotal() > 21)
@@ -84,6 +84,16 @@ void GameProcessing::CheckCards() {
             std::cout << "You lost" << std::endl;
             temp = false;
         }
+    }
+
+    // To waste time a bit, for now
+    int delay = 0;
+    for (int i = 0; i < 1000000000; i++) {
+        delay = (i * 2 - 30 + 200) / 2 + 68 / 3;
+        if (delay > 2)
+            delay /= 3;
+        else
+            delay += 3;
     }
 
     SendRoundResult(temp);

@@ -2,6 +2,7 @@
 #include "card.hpp"
 #include <random>
 
+
 #define DECK_SIZE 52
 
 class Deck {
