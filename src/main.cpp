@@ -78,6 +78,8 @@ int main() {
         // Window clearing
         window.clear(sf::Color(0, 93, 34)); // <-- Rendering from here
 
+        gameProcessor.ProcessDealerTurn();
+
         // GUI rendering
         gui.Draw(window);
 

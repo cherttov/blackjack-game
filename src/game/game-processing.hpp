@@ -24,6 +24,7 @@ class GameProcessing {
         // Game processing events
         void StartNewGame();
         void CheckCards();
+        void ProcessDealerTurn();
 
         // Player events
         void PlayerHitEvent(); // Hit button
