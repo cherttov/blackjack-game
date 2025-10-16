@@ -59,14 +59,20 @@ void GameProcessing::PlayerStandEvent() {
 
 // For now just an alternative to a loop to not block main loop
 void GameProcessing::ProcessDealerTurn() {
-    if (state == GameState::DEALER_TURN) {
-        if (dealer.ProcessTurn(player.GetTotal())) {
-            Card temp = deck.DrawCard();
-            dealer.AddCard(temp);
-            SendDealerCards(temp);
-        } else {
-            CheckCards();
-        }
+    if (state != GameState::DEALER_TURN)
+        return;
+
+    if (actionDelay++ < 30)
+        return;
+
+    actionDelay = 0;
+
+    if (dealer.ProcessTurn(player.GetTotal())) {
+        Card temp = deck.DrawCard();
+        dealer.AddCard(temp);
+        SendDealerCards(temp);
+    } else {
+        CheckCards();
     }
 }
 

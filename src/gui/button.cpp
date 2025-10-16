@@ -3,43 +3,32 @@
 
 // Constructor
 Button::Button(sf::Font& fontRef,
-               sf::Vector2f aSize,
-               sf::Vector2f aPosition,
-               std::string aDisplayedText,
-               sf::Color aRectColor,
-               sf::Color aTextColor) 
-    : font(fontRef),
-    size(aSize),
-    position(aPosition),
-    textPosition({0.f, 0.f})
+               sf::Vector2f size,
+               sf::Vector2f position,
+               std::string displayedText,
+               sf::Color rectColor,
+               sf::Color textColor) 
+    : font(fontRef)
 {
     // Rect init
-    rect.setSize(aSize);
-    rect.setPosition(aPosition);
-    rect.setFillColor(aRectColor);
+    rect.setSize(size);
+    rect.setPosition(position);
+    rect.setFillColor(rectColor);
 
     // Text init
     text.setFont(font);
-    text.setString(aDisplayedText);
+    text.setString(displayedText);
     text.setCharacterSize(TEXTSIZE);
-    text.setFillColor(aTextColor);
+    text.setFillColor(textColor);
 
-    AlignText();
-    text.setPosition(textPosition);
+    text.setPosition(AlignText());
 }
 
 // Handling the mouse events
 bool Button::HandleMouse(const Mouse& mouse) {
-    if (mouse.clicked) {
-        Bounds b = GetBounds();
-
-        if (mouse.position.x >= b.min.x &&
-            mouse.position.x <= b.max.x &&
-            mouse.position.y >= b.min.y &&
-            mouse.position.y <= b.max.y) {
-                return true;
-        }
-    }
+    if (mouse.clicked)
+        if (rect.getGlobalBounds().contains(mouse.position))
+            return true;
     return false;
 }
 
@@ -52,16 +41,9 @@ void Button::Draw(sf::RenderWindow& window) {
 }
 
 // Aligns text to the middle of the rectangle
-void Button::AlignText() {
-    textPosition.x = position.x + size.x / 2.f - text.getLocalBounds().width / 2.f;
-    textPosition.y = position.y + size.y / 2.f - text.getLocalBounds().height / 2.f - text.getLocalBounds().top;
-}
-
-
-// Get the bounds of the rectangle
-Bounds Button::GetBounds() const {
-    Bounds b;
-    b.min = position;
-    b.max = sf::Vector2f( position.x + size.x, position.y + size.y );
-    return b;
+sf::Vector2f Button::AlignText() {
+    return sf::Vector2f(
+        rect.getPosition().x + (rect.getSize().x / 2.f) - (text.getLocalBounds().width / 2.f),
+        rect.getPosition().y + (rect.getSize().y / 2.f - text.getLocalBounds().height / 2.f) - text.getLocalBounds().top
+    );
 }

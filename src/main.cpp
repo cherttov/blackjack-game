@@ -14,11 +14,10 @@ int main() {
     // Define window
     sf::Vector2u windowSize(500, 500);
     sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Blackjack Game", sf::Style::Close);
-    window.setFramerateLimit(30);
+    window.setFramerateLimit(60);
 
     // Instantiate mouse
     Mouse mouse;
-    int posDelay = 0;
 
     // Load font
     sf::Font font;
@@ -64,10 +63,6 @@ int main() {
         }
         // Mouse event
         mouse.Update(window);
-        posDelay++;
-        if (posDelay == 15) {
-            posDelay = 0;
-        }
 
         // Button events
         if (hitButton.HandleMouse(mouse)) {

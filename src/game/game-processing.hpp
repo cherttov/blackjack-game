@@ -13,7 +13,8 @@ enum class GameState {
     WAITING_FOR_INPUT,
     PLAYER_TURN,
     DEALER_TURN,
-    INTERMISSION
+    INTERMISSION,
+    END_OF_ROUND
 };
 
 
@@ -38,6 +39,7 @@ class GameProcessing {
         Player player;
         Dealer dealer;
         Deck deck;
+        int actionDelay = 0;
 
         // Gui ref
         Gui& gui;
