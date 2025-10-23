@@ -2,3 +2,4 @@ note.txt
 .vscode/
 /assets/communication-diagram.png
 compiler.bat
+bin/

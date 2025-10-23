@@ -1,5 +1,8 @@
+#define SFML_STATIC
 // Libraries
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/System.hpp>
 #include <iostream>
 
 // Other code
