@@ -7,11 +7,9 @@ TextObject::TextObject(sf::Font& fontRef,
                        int size,
                        sf::Color textColor,
                        sf::Vector2f position) 
-    : font(fontRef) 
+    : font(fontRef),
+      text(fontRef, displayedText, static_cast<unsigned int>(size))
 {
-    text.setFont(font);
-    text.setCharacterSize(size);
-    text.setString(displayedText);
     text.setFillColor(textColor);
     text.setPosition(position);  
 }

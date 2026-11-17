@@ -8,7 +8,8 @@ Button::Button(sf::Font& fontRef,
                std::string displayedText,
                sf::Color rectColor,
                sf::Color textColor) 
-    : font(fontRef)
+    : font(fontRef),
+      text(fontRef, displayedText, TEXTSIZE)
 {
     // Rect init
     rect.setSize(size);
@@ -16,11 +17,7 @@ Button::Button(sf::Font& fontRef,
     rect.setFillColor(rectColor);
 
     // Text init
-    text.setFont(font);
-    text.setString(displayedText);
-    text.setCharacterSize(TEXTSIZE);
     text.setFillColor(textColor);
-
     text.setPosition(AlignText());
 }
 
@@ -42,8 +39,9 @@ void Button::Draw(sf::RenderWindow& window) {
 
 // Aligns text to the middle of the rectangle
 sf::Vector2f Button::AlignText() {
+    sf::FloatRect bounds = text.getLocalBounds();
     return sf::Vector2f(
-        rect.getPosition().x + (rect.getSize().x / 2.f) - (text.getLocalBounds().width / 2.f),
-        rect.getPosition().y + (rect.getSize().y / 2.f - text.getLocalBounds().height / 2.f) - text.getLocalBounds().top
+        rect.getPosition().x + (rect.getSize().x / 2.f) - (bounds.size.x / 2.f),
+        rect.getPosition().y + (rect.getSize().y / 2.f - bounds.size.y / 2.f) - bounds.position.y
     );
 }

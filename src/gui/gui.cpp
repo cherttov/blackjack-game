@@ -50,8 +50,8 @@ void Gui::ResetCards() {
 // Rendering player cards
 void Gui::ProcessPlayerCard(std::string cardPath, int total) {
     sf::Sprite sprite(GetCardTexture(cardPath));
-    sprite.setPosition(50.f + playerCards.size() * 100.f * 0.9f, 250.f);
-    sprite.setScale(0.9f, 0.9f);
+    sprite.setPosition(sf::Vector2f(50.f + playerCards.size() * 100.f * 0.9f, 250.f));
+    sprite.setScale(sf::Vector2f(0.9f, 0.9f));
     playerCards.push_back(sprite);
     playerTotal = total;
 }
@@ -59,8 +59,8 @@ void Gui::ProcessPlayerCard(std::string cardPath, int total) {
 // Rendering dealer cards
 void Gui::ProcessDealerCard(std::string cardPath, int total) {
     sf::Sprite sprite(GetCardTexture(cardPath));
-    sprite.setPosition(50.f + dealerCards.size() * 100.f * 0.9f, 25.f);
-    sprite.setScale(0.9f, 0.9f);
+    sprite.setPosition(sf::Vector2f(50.f + dealerCards.size() * 100.f * 0.9f, 25.f));
+    sprite.setScale(sf::Vector2f(0.9f, 0.9f));
     dealerCards.push_back(sprite);
     dealerTotal = total;
 }

@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Config.hpp>
 #include <iostream>
 
 // Other code
@@ -11,12 +12,15 @@
 #include "gui/gui.hpp"
 #include "game/game-processing.hpp"
 
-
-
 int main() {
+    std::cout << "SFML Version: " 
+          << SFML_VERSION_MAJOR << "." 
+          << SFML_VERSION_MINOR << "." 
+          << SFML_VERSION_PATCH << std::endl;
+
     // Define window
     sf::Vector2u windowSize(500, 500);
-    sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Blackjack Game", sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(sf::Vector2u(windowSize.x, windowSize.y)), "Blackjack Game", sf::Style::Close);
     window.setFramerateLimit(60);
 
     // Instantiate mouse
@@ -24,7 +28,7 @@ int main() {
 
     // Load font
     sf::Font font;
-    if (!font.loadFromFile("assets/fonts/arial.ttf")) {
+    if (!font.openFromFile("assets/fonts/arial.ttf")) {
         std::cerr << "Failed to load font\n";
         return 1;
     }
@@ -58,12 +62,12 @@ int main() {
     // Main loop
     while (window.isOpen()) {
         // Close window event
-        sf::Event event;
-        while(window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
+        while (const std::optional event = window.pollEvent()) {
+            if (event->is<sf::Event::Closed>()) {
                 window.close();
             }
         }
+
         // Mouse event
         mouse.Update(window);
 
